@@ -1,0 +1,8 @@
+C:\Users\Arran\source\repos\CordTool\CordTool\bin\Debug\CordTool.exe.config
+C:\Users\Arran\source\repos\CordTool\CordTool\bin\Debug\CordTool.exe
+C:\Users\Arran\source\repos\CordTool\CordTool\bin\Debug\CordTool.pdb
+C:\Users\Arran\source\repos\CordTool\CordTool\obj\Debug\CordTool.csproj.AssemblyReference.cache
+C:\Users\Arran\source\repos\CordTool\CordTool\obj\Debug\CordTool.csproj.CoreCompileInputs.cache
+C:\Users\Arran\source\repos\CordTool\CordTool\obj\Debug\CordTool.exe
+C:\Users\Arran\source\repos\CordTool\CordTool\obj\Debug\CordTool.pdb
+C:\Users\Arran\source\repos\CordTool\CordTool\obj\Debug\CordTool.exe.config

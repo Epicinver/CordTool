@@ -8,8 +8,7 @@ using DSharpPlus;
 using DSharpPlus.CommandsNext;
 using System.Threading;
 using System.Security.Authentication;
-
-
+using System.Windows.Forms;
 
 namespace CordTool
 {
@@ -70,6 +69,12 @@ namespace CordTool
                     case 'p':
                         releaseNotes();
                         break;
+                    case 'Y':
+                        CordToolGUI();
+                        break;
+                    case 'y':
+                        CordToolGUI();
+                        break;
                 }
             }
         }
@@ -97,7 +102,7 @@ namespace CordTool
             Console.ResetColor();
             Console.WriteLine("CordTool - A tool for managing and interacting with Discord webhooks.");
             Console.WriteLine("Developed by: Arran :)");
-            Console.WriteLine("Version: 2.0.0 (Release notes: Type 9)");
+            Console.WriteLine("Version: 3.0.0 (Release notes: Type P)");
         }
         static void Menu()
         {
@@ -107,6 +112,7 @@ namespace CordTool
             Console.WriteLine("4. Nuke Server Better (Reccommended)");
             Console.WriteLine("5. Exit");
             Console.WriteLine("P. Release Notes");
+            Console.WriteLine("Y. GUI version");
         }
 
         static async void webhookMessage()
@@ -252,12 +258,31 @@ namespace CordTool
                     Console.WriteLine("Version 2.0.0 - Second release, not much.");
                     Console.WriteLine("There is 6 options: Nuke Server, Login to a bot, Send webhook message, Nuke Server (Better), and the Release Notes. The last is Exit, but that doesn't count.");
                     Console.WriteLine("This version can be downloaded at: https://github.com/Epicinver/CordTool/releases/download/v2.0.0/Cordtool.zip");
-                    Console.WriteLine("This version is the one you are using right now.");
+                    Console.WriteLine("Click any key to exit.");
+                    Console.ReadKey();
+                    Console.Clear();
+                    break;
+                case '3':
+                    Console.WriteLine("Version 3.0.0 - GUI version fully integrated.");
+                    Console.WriteLine("A GUI version has been added, along with a few bug fixes!");
+                    Console.WriteLine("The GUI was made in Windows Forms, with simple C#, and the Visual Studio Designer view.");
+                    Console.WriteLine("This version can be downloaded at: https://github.com/Epicinver/CordTool/releases/download/v3.0.0/Cordtool.zip");
                     Console.WriteLine("Click any key to exit.");
                     Console.ReadKey();
                     Console.Clear();
                     break;
             }
         }
+
+static void CordToolGUI()
+    {
+        Console.Clear();
+        Console.WriteLine("Minimise this window and focus on the GUI.");
+        Application.EnableVisualStyles();
+        Application.SetCompatibleTextRenderingDefault(false);
+        Application.Run(new Form1());
+        Console.Clear();
     }
+
+}
 }

@@ -1,18 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net.Http;
-using DSharpPlus;
+﻿using DSharpPlus;
 using DSharpPlus.CommandsNext;
-using System.Threading;
-using System.Security.Authentication;
-using System.Windows.Forms;
-using System.Runtime.CompilerServices;
-using DSharpPlus.EventArgs;
 using DSharpPlus.Entities;
+using DSharpPlus.EventArgs;
+using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net.Http;
+using System.Runtime.CompilerServices;
+using System.Security.Authentication;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
 
 namespace CordTool
 {
@@ -23,7 +28,7 @@ namespace CordTool
         static DiscordChannel currentChannel;
         static ConcurrentQueue<string> messageQueue = new ConcurrentQueue<string>();
 
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             while (true)
             {
@@ -70,7 +75,7 @@ namespace CordTool
                         Console.WriteLine("Nuked!");
                         break;
                     case '3':
-                        loginBot();
+                        await loginBot();
                         Thread.Sleep(10000);
                         Console.Clear();
                         break;
@@ -85,6 +90,16 @@ namespace CordTool
                         break;
                     case 'y':
                         CordToolGUI();
+                        break;
+                    case 'U':
+                        await Update();
+                        Thread.Sleep(1000);
+                        Console.Clear();
+                        break;
+                    case 'u':
+                        await Update();
+                        Thread.Sleep(1000);
+                        Console.Clear();
                         break;
                 }
             }
@@ -113,7 +128,7 @@ namespace CordTool
             Console.ResetColor();
             Console.WriteLine("CordTool - A tool for managing and interacting with Discord webhooks.");
             Console.WriteLine("Developed by: Arran :)");
-            Console.WriteLine("Version: 3.0.0 (Release notes: Type P)");
+            Console.WriteLine("Version: 5.0.0 (Release notes: Type P)");
         }
         static void Menu()
         {
@@ -124,6 +139,7 @@ namespace CordTool
             Console.WriteLine("5. Exit");
             Console.WriteLine("P. Release Notes");
             Console.WriteLine("Y. GUI version");
+            Console.WriteLine("U. Update");
         }
 
         static async void webhookMessage()
@@ -175,7 +191,7 @@ namespace CordTool
 
         }
 
-        static async void loadinghaha()
+        static void loadinghaha()
         {
             Console.Clear();
             Console.WriteLine("Loading... 1%");
@@ -332,7 +348,7 @@ namespace CordTool
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine("Something is happening in the Nuke function.");
+                        Console.WriteLine($"Something is happening in the Nuke function. [technical: {ex}]");
                     }
                 }
 
@@ -397,10 +413,115 @@ namespace CordTool
                     Console.ReadKey();
                     Console.Clear();
                     break;
+                case '5':
+                    Console.WriteLine("Version 5.0.0 - 5th release, bug fixes/updater.");
+                    Console.WriteLine("This version has a few bug fixes, and i added a bug fixer.");
+                    Console.WriteLine("The updater will check for updates with GitHub's API, and make a batch file if it finds any newer versions.");
+                    Console.WriteLine("The updater will delete all files except the batch file, and then run the setup.exe that it downloaded. Then, it'll delete the batch file.");
+                    Console.WriteLine("This version can be downloaded at: https://github.com/Epicinver/CordTool/releases/download/v4.0.0/Cordtool.zip");
+                    Console.WriteLine("Click any key to exit.");
+                    Console.ReadKey();
+                    Console.Clear();
+                    break;
             }
         }
 
-static void CordToolGUI()
+        static async Task Update()
+        {
+            Console.Clear();
+            Console.WriteLine("Checking for updates...");
+
+            const string VERSION_UPDATE_VAR = "5.0.0"; // current version
+            const string GITHUB_API = "https://api.github.com/repos/epicinver/cordtool/releases/latest";
+
+            try
+            {
+                var client = new System.Net.Http.HttpClient();
+                client.DefaultRequestHeaders.UserAgent.ParseAdd("CordToolUpdater/1.0");
+
+                string json = await client.GetStringAsync(GITHUB_API);
+
+                dynamic release = Newtonsoft.Json.JsonConvert.DeserializeObject(json);
+                string latestTag = release.tag_name;
+                var assets = release.assets;
+
+                Version latestVer, currentVer;
+                if (Version.TryParse(latestTag.TrimStart('v'), out latestVer) &&
+                    Version.TryParse(VERSION_UPDATE_VAR.TrimStart('v'), out currentVer) &&
+                    latestVer > currentVer)
+                {
+                    Console.WriteLine("Update found: " + latestTag);
+
+                    string setupUrl = null;
+                    foreach (var asset in assets)
+                    {
+                        string name = asset.name;
+                        if (string.Equals(name, "setup.exe", StringComparison.OrdinalIgnoreCase))
+                        {
+                            setupUrl = asset.browser_download_url;
+                            break;
+                        }
+                    }
+
+                    if (setupUrl == null)
+                    {
+                        Console.WriteLine("No setup.exe in release.");
+                        return;
+                    }
+
+                    string tempPath = Path.Combine(Path.GetTempPath(), "CordTool_Setup.exe");
+                    Console.WriteLine("Downloading setup.exe...");
+                    byte[] setupBytes = await client.GetByteArrayAsync(setupUrl);
+                    File.WriteAllBytes(tempPath, setupBytes); // sync version (C# 7.3 safe)
+
+                    string batchFile = Path.Combine(Directory.GetCurrentDirectory(), "update.bat");
+                    string batchContent =
+        @"@echo off
+echo Updating CordTool...
+taskkill /IM CordTool.exe /F >nul 2>&1
+
+REM Delete all files except update.bat
+for %%f in (*.*) do (
+    if /I not ""%%~nxf""==""update.bat"" (
+        del /f /q ""%%f""
+    )
+)
+for /d %%d in (*) do rd /s /q ""%%d""
+
+echo Launching setup.exe
+start """" """ + tempPath + @"""
+
+del /f /q update.bat
+exit
+";
+                    File.WriteAllText(batchFile, batchContent);
+
+                    Console.WriteLine("Running updater...");
+                    System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                    {
+                        FileName = batchFile,
+                        UseShellExecute = true,
+                        CreateNoWindow = true
+                    });
+
+                    Environment.Exit(0);
+                }
+                else
+                {
+                    Console.WriteLine("You already have the latest version.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Update failed: " + ex.Message);
+            }
+
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+        }
+
+
+        static void CordToolGUI()
     {
         Console.Clear();
         Console.WriteLine("Minimise this window and focus on the GUI.");

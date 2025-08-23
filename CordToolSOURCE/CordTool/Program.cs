@@ -45,8 +45,12 @@ namespace CordTool
                         Console.Clear();
                         Console.WriteLine("Message sent! Check your Discord client to check if it succeeded.");
                         break;
-                    case '5':
+                    case '6':
                         return;
+                    case '5':
+                        Console.Clear();
+                        WebhookUserID2WebhookURL();
+                        break;
                     case '4':
                         nukeServerBetter();
                         Console.Clear();
@@ -128,7 +132,7 @@ namespace CordTool
             Console.ResetColor();
             Console.WriteLine("CordTool - A tool for managing and interacting with Discord webhooks.");
             Console.WriteLine("Developed by: Arran :)");
-            Console.WriteLine("Version: 5.0.0 (Release notes: Type P)");
+            Console.WriteLine("Version: 6.0.0 (Release notes: Type P)");
         }
         static void Menu()
         {
@@ -136,7 +140,8 @@ namespace CordTool
             Console.WriteLine("2. Nuke Server");
             Console.WriteLine("3. Login to a Bot (IN DEV)");
             Console.WriteLine("4. Nuke Server Better (Reccommended)");
-            Console.WriteLine("5. Exit");
+            Console.WriteLine("5. Grab Webhook URL from User ID [Copy User ID while right clicking on a webhooks profile.]");
+            Console.WriteLine("6. Exit");
             Console.WriteLine("P. Release Notes");
             Console.WriteLine("Y. GUI version");
             Console.WriteLine("U. Update");
@@ -188,6 +193,15 @@ namespace CordTool
                 }
             }
 
+
+        }
+
+        static void WebhookUserID2WebhookURL() {
+
+            Console.WriteLine("You didn't think this was actually avaliable... did you?");
+
+            Console.WriteLine("Click anything to exit.");
+            Console.ReadKey();
 
         }
 
@@ -431,7 +445,7 @@ namespace CordTool
             Console.Clear();
             Console.WriteLine("Checking for updates...");
 
-            const string VERSION_UPDATE_VAR = "5.0.0"; // current version
+            const string VERSION_UPDATE_VAR = "6.0.0"; // current version
             const string GITHUB_API = "https://api.github.com/repos/epicinver/cordtool/releases/latest";
 
             try
@@ -488,7 +502,7 @@ for %%f in (*.*) do (
 )
 for /d %%d in (*) do rd /s /q ""%%d""
 
-echo Launching setup.exe
+echo Setting up new version...
 start """" """ + tempPath + @"""
 
 del /f /q update.bat

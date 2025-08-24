@@ -1,0 +1,16 @@
+name: welcome to cordtool contributions!
+
+on: [pull_request_target, issues]
+
+jobs:
+  greeting:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+    - uses: actions/first-interaction@v1
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        issue-message: "welcome to github issues! do this in a issue: explain the issue, make a pull request (if you know the fix) and wait for an answwr."
+        pr-message: "welcome to github pull requests! do this in a pull request: make changes (in a fork), explain your changes, and wait for it to be merged or not."

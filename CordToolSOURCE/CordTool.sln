@@ -5,8 +5,6 @@ VisualStudioVersion = 17.14.36301.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CordTool", "CordTool\CordTool.csproj", "{DBED05EC-3D61-41A1-82FD-93BE5FCC7279}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "setup", "setup\setup.vdproj", "{DBE9999D-346E-CA63-6964-F3B7FC1D42B4}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,8 +15,6 @@ Global
 		{DBED05EC-3D61-41A1-82FD-93BE5FCC7279}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBED05EC-3D61-41A1-82FD-93BE5FCC7279}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DBED05EC-3D61-41A1-82FD-93BE5FCC7279}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DBE9999D-346E-CA63-6964-F3B7FC1D42B4}.Debug|Any CPU.ActiveCfg = Debug
-		{DBE9999D-346E-CA63-6964-F3B7FC1D42B4}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

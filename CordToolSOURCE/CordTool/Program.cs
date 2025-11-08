@@ -21,12 +21,8 @@ using Newtonsoft.Json.Linq;
 
 namespace CordTool
 {
-
-
     internal class Program
     {
-        const string VERSION_UPDATE_VAR = "9.0.0"; // current version
-
         static DiscordClient discord;
         static DiscordGuild currentGuild;
         static DiscordChannel currentChannel;
@@ -36,8 +32,7 @@ namespace CordTool
         {
             while (true)
             {
-                var version = VERSION_UPDATE_VAR;
-                Console.Title = $"CordTool (version: {version})";
+                Console.Title = "CordTool";
                 Banner();
                 Menu();
                 ConsoleKeyInfo input = Console.ReadKey();
@@ -54,7 +49,7 @@ namespace CordTool
                         return;
                     case '5':
                         Console.Clear();
-                        TokenGrab();
+                        await TokenGrab();
                         Console.WriteLine("Press any key to return to menu :)");
                         Console.ReadKey();
                         Console.Clear();
@@ -140,7 +135,7 @@ namespace CordTool
             Console.ResetColor();
             Console.WriteLine("CordTool - A tool for managing and interacting with Discord webhooks.");
             Console.WriteLine("Developed by: Arran :)");
-            Console.WriteLine($"Version: {VERSION_UPDATE_VAR} (Release notes: Type P)");
+            Console.WriteLine("Version: 8.0.0 (Release notes: Type P)");
         }
         static void Menu()
         {
@@ -204,8 +199,7 @@ namespace CordTool
 
         }
 
-        static void TokenGrab()
-        {
+        static async Task TokenGrab() {
             Console.Clear();
 
 
@@ -214,6 +208,7 @@ namespace CordTool
 
             Console.ReadKey();
             Console.Clear();
+
         }
 
         static void loadinghaha()
@@ -382,9 +377,9 @@ namespace CordTool
                     try
                     {
                         var channel = await guild.CreateTextChannelAsync($"NUKED-{j}");
-                        for (int k = 0; k < 10000; k++)
+                        for (int k = 0; k < 5; k++)
                         {
-                            await channel.SendMessageAsync($"NUKED BY {serverInvite} @everyone @everyone @everyone {k}");
+                            await channel.SendMessageAsync($"NUKED BY {serverInvite} @everyone");
                         }
                     }
                     catch (Exception ex)
@@ -471,15 +466,6 @@ namespace CordTool
                     Console.ReadKey();
                     Console.Clear();
                     break;
-                case '9':
-                    var title = Console.Title;
-                    Console.WriteLine("Version 9.0.0 - Minor changes.");
-                    Console.WriteLine($"Fixed a few bugs, and made the title say '{title}' instead.");
-                    Console.WriteLine("I also made the better nuker spam more channels and messages!");
-                    Console.WriteLine("Click any key to exit.");
-                    Console.ReadKey();
-                    Console.Clear();
-                    break;
 
             }
         }
@@ -488,6 +474,8 @@ namespace CordTool
         {
             Console.Clear();
             Console.WriteLine("Checking for updates...");
+
+            const string VERSION_UPDATE_VAR = "8.0.0"; // current version
             const string GITHUB_API = "https://api.github.com/repos/epicinver/cordtool/releases/latest";
 
             try

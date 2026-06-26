@@ -3,9 +3,6 @@
     partial class Form1
     {
         private System.ComponentModel.IContainer components = null;
-        private System.Windows.Forms.Button btnSendWebhook;
-        private System.Windows.Forms.Button btnNukeServer;
-        private System.Windows.Forms.Button btnNukeServerBetter;
         private System.Windows.Forms.Button btnReleaseNotes;
         private System.Windows.Forms.Button btnExit;
 
@@ -20,43 +17,10 @@
 
         private void InitializeComponent()
         {
-            this.btnSendWebhook = new System.Windows.Forms.Button();
-            this.btnNukeServer = new System.Windows.Forms.Button();
-            this.btnNukeServerBetter = new System.Windows.Forms.Button();
             this.btnReleaseNotes = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // btnSendWebhook
-            // 
-            this.btnSendWebhook.Location = new System.Drawing.Point(468, 377);
-            this.btnSendWebhook.Name = "btnSendWebhook";
-            this.btnSendWebhook.Size = new System.Drawing.Size(200, 40);
-            this.btnSendWebhook.TabIndex = 0;
-            this.btnSendWebhook.Text = "Send Webhook Message";
-            this.btnSendWebhook.UseVisualStyleBackColor = true;
-            this.btnSendWebhook.Click += new System.EventHandler(this.btnSendWebhook_Click);
-            // 
-            // btnNukeServer
-            // 
-            this.btnNukeServer.Location = new System.Drawing.Point(468, 285);
-            this.btnNukeServer.Name = "btnNukeServer";
-            this.btnNukeServer.Size = new System.Drawing.Size(200, 40);
-            this.btnNukeServer.TabIndex = 1;
-            this.btnNukeServer.Text = "Nuke Server";
-            this.btnNukeServer.UseVisualStyleBackColor = true;
-            this.btnNukeServer.Click += new System.EventHandler(this.btnNukeServer_Click);
-            // 
-            // btnNukeServerBetter
-            // 
-            this.btnNukeServerBetter.Location = new System.Drawing.Point(468, 331);
-            this.btnNukeServerBetter.Name = "btnNukeServerBetter";
-            this.btnNukeServerBetter.Size = new System.Drawing.Size(200, 40);
-            this.btnNukeServerBetter.TabIndex = 2;
-            this.btnNukeServerBetter.Text = "Nuke Server Better";
-            this.btnNukeServerBetter.UseVisualStyleBackColor = true;
-            this.btnNukeServerBetter.Click += new System.EventHandler(this.btnNukeServerBetter_Click);
             // 
             // btnReleaseNotes
             // 
@@ -81,22 +45,20 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Cursor = System.Windows.Forms.Cursors.Help;
-            this.label1.Font = new System.Drawing.Font("Segoe Script", 72F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(236, 9);
+            this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label1.Location = new System.Drawing.Point(12, 294);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(654, 199);
+            this.label1.Size = new System.Drawing.Size(1098, 64);
             this.label1.TabIndex = 5;
-            this.label1.Text = "CordTool";
+            this.label1.Text = "Cordtool GUI will be phased out. Thank you.";
+            this.label1.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // Form1
             // 
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(1107, 663);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnSendWebhook);
-            this.Controls.Add(this.btnNukeServer);
-            this.Controls.Add(this.btnNukeServerBetter);
             this.Controls.Add(this.btnReleaseNotes);
             this.Controls.Add(this.btnExit);
             this.Name = "Form1";

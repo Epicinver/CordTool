@@ -53,7 +53,7 @@ namespace CordTool
         private void btnReleaseNotes_Click(object sender, EventArgs e)
         {
             MessageBox.Show(
-                "Version 2.0.0 - GUI version integrated.\n" +
+                "Version 9.5.0 -- Minor bug fixes, an easter egg and auto updates." + Environment.NewLine +
                 "Other versions available in console release notes."
             );
         }
@@ -122,6 +122,16 @@ namespace CordTool
             }
 
             await discord.DisconnectAsync();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 

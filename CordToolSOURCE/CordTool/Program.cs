@@ -28,12 +28,14 @@ namespace CordTool
         static DiscordChannel currentChannel;
         static ConcurrentQueue<string> messageQueue = new ConcurrentQueue<string>();
 
+
         static async Task Main(string[] args)
         {
             while (true)
             {
                 Console.Title = "CordTool";
-                Banner();
+                Banner(args);
+                await CheckForUpdates();
                 Menu();
                 ConsoleKeyInfo input = Console.ReadKey();
                 char option = input.KeyChar;
@@ -49,7 +51,7 @@ namespace CordTool
                         return;
                     case '5':
                         Console.Clear();
-                        await TokenGrab();
+                        oauthlog();
                         Console.WriteLine("Press any key to return to menu :)");
                         Console.ReadKey();
                         Console.Clear();
@@ -112,47 +114,73 @@ namespace CordTool
             }
         }
 
-        static void Banner()
+        
+        static void Banner(string[] arguments)
         {
             Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine("       _..._       .-'''-.                                    .-'''-.        .-'''-.          ");
-            // we want a fade look
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("    .-'_..._''.   '   _    \\         _______                 '   _    \\     '   _    \\  .---. ");
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
-            Console.WriteLine("  .' .'      '.\\/   /` '.   \\        \\  ___ `'.            /   /` '.   \\  /   /` '.   \\ |   | ");
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine(" / .'          .   |     \\  '         ' |--.\\  \\          .   |     \\  ' .   |     \\  ' |   | ");
-            Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine(". '            |   '      |  '.-,.--. | |    \\  '      .| |   '      |  '|   '      |  '|   | ");
-            Console.ForegroundColor = ConsoleColor.DarkMagenta;
-            Console.WriteLine("| |            \\    \\     / / |  .-. || |     |  '   .' |_\\    \\     / / \\    \\     / / |   | ");
-            Console.ForegroundColor = ConsoleColor.DarkGreen;
-            Console.WriteLine("| |             `.   ` ..' /  | |  | || |     |  | .'     |`.   ` ..' /   `.   ` ..' /  |   | ");
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine(". '                '-...-'`   | |  | || |     ' .''--.  .-'   '-...-'`       '-...-'`   |   | ");
-            Console.ForegroundColor = ConsoleColor.DarkRed;
-            Console.WriteLine(" \\ '.          .              | |  '- | |___.' /'    |  |                               |   | ");
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("  '. `._____.-'/              | |    /_______.'/     |  |                               |   | ");
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine("    `-.______ /               | |    \\_______|/      |  '.'                             '---' ");
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("             `                |_|                    |   /                                     ");
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("                                                     `'-'                                      ");
+            if (arguments.Length > 0 && arguments[0] == "gay")
+            {
+                Console.WriteLine("       _..._       .-'''-.                                    .-'''-.        .-'''-.          ");
+                // we want a fade look
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("    .-'_..._''.   '   _    \\         _______                 '   _    \\     '   _    \\  .---. ");
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.WriteLine("  .' .'      '.\\/   /` '.   \\        \\  ___ `'.            /   /` '.   \\  /   /` '.   \\ |   | ");
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine(" / .'          .   |     \\  '         ' |--.\\  \\          .   |     \\  ' .   |     \\  ' |   | ");
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine(". '            |   '      |  '.-,.--. | |    \\  '      .| |   '      |  '|   '      |  '|   | ");
+                Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                Console.WriteLine("| |            \\    \\     / / |  .-. || |     |  '   .' |_\\    \\     / / \\    \\     / / |   | ");
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                Console.WriteLine("| |             `.   ` ..' /  | |  | || |     |  | .'     |`.   ` ..' /   `.   ` ..' /  |   | ");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine(". '                '-...-'`   | |  | || |     ' .''--.  .-'   '-...-'`       '-...-'`   |   | ");
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine(" \\ '.          .              | |  '- | |___.' /'    |  |                               |   | ");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("  '. `._____.-'/              | |    /_______.'/     |  |                               |   | ");
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine("    `-.______ /               | |    \\_______|/      |  '.'                             '---' ");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("             `                |_|                    |   /                                     ");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("                                                     `'-'                                      ");
+
+                Console.ResetColor();
+
+                Console.ForegroundColor = ConsoleColor.Yellow;
+
+                Console.WriteLine("                                   Made by https://github.com/Epicinver/ :P                 ");
+
+                Console.ResetColor();
+            }
+            else
+            {
+                Console.WriteLine(@"
+       _..._                                                                                             
+    .-'_..._''.                          _______                                                   .---. 
+  .' .'      '.\                         \  ___ `'.                                                |   | 
+ / .'                                     ' |--.\  \                                               |   | 
+. '                 .-''` ''-.    .-,.--. | |    \  '      .|      .-''` ''-.        .-''` ''-.    |   | 
+| |               .'          '.  |  .-. || |     |  '   .' |_   .'          '.    .'          '.  |   | 
+| |              /              ` | |  | || |     |  | .'     | /              `  /              ` |   | 
+. '             '                '| |  | || |     ' .''--.  .-''                ''                '|   | 
+ \ '.          .|         .-.    || |  '- | |___.' /'    |  |  |         .-.    ||         .-.    ||   | 
+  '. `._____.-'/.        |   |   .| |    /_______.'/     |  |  .        |   |   ..        |   |   .|   | 
+    `-.______ /  .       '._.'  / | |    \_______|/      |  '.' .       '._.'  /  .       '._.'  / '---' 
+             `    '._         .'  |_|                    |   /   '._         .'    '._         .'  - @Epicinver  
+                     '-....-'`                           `'-'       '-....-'`         '-....-'`          
+
+");
+            }
+
+                Console.ForegroundColor = ConsoleColor.Magenta;
             
-            Console.ResetColor();
-            
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            
-            Console.WriteLine("                              Made by https://github.com/Epicinver/CordTool :P                 ");
-            
-            Console.ResetColor();
-            
-            Console.WriteLine("CordTool - A tool for managing and interacting with Discord webhooks.");
+            Console.WriteLine("CordTool - The Best Multitool");
             Console.WriteLine("Developed by: Arran :)");
             Console.WriteLine("Version: 9.5.0 (Release notes: Type P)");
+
         }
         static void Menu()
         {
@@ -167,6 +195,11 @@ namespace CordTool
             Console.WriteLine("U. Update");
         }
 
+        static async void oauthlog()
+        {
+            Console.WriteLine("Constantly being worked on, will be finished in v10. Press any key to go to main menu");
+            Console.ReadKey();
+        }
         static async void webhookMessage()
         {
             Console.Clear();
@@ -216,17 +249,6 @@ namespace CordTool
 
         }
 
-        static async Task TokenGrab() {
-            Console.Clear();
-
-
-            Console.WriteLine("Being a C# developer is hard. Please support me (and maybe i'll finish this)");
-            Console.WriteLine("Click a key to exit");
-
-            Console.ReadKey();
-            Console.Clear();
-
-        }
 
         static void loadinghaha()
         {
@@ -346,10 +368,8 @@ namespace CordTool
             }
         }
 
-            static async void nukeServerBetter()
+        static async void nukeServerBetter()
         {
-            Console.Clear();
-            loadinghaha();
             Console.Clear();
             Console.Write("Bot Token: ");
             string Token = Console.ReadLine();
@@ -410,6 +430,7 @@ namespace CordTool
                 }
             }
         }
+
         static void releaseNotes()
         {
             Console.Clear();
@@ -417,12 +438,11 @@ namespace CordTool
             Console.Clear();
             Console.WriteLine("Release Notes for CordTool");
             Console.WriteLine("Type the version below.");
-            ConsoleKeyInfo input = Console.ReadLine();
-            char option = input.KeyChar;
+            string option = Console.ReadLine();
             Console.WriteLine(option);
             switch (option)
             {
-                case '1':
+                case "1":
                     Console.WriteLine("Version 1.0.0 - Initial release with basic features.");
                     Console.WriteLine("There is 4 options: Nuke Server, Login to a bot, and send webhook message. The last is Exit, but that doesn't count.");
                     Console.WriteLine("This version can be downloaded at: https://github.com/Epicinver/CordTool/releases/download/Discord/DiscordHatesMe.zip");
@@ -430,7 +450,7 @@ namespace CordTool
                     Console.ReadKey();
                     Console.Clear();
                     break;
-                case '2':
+                case "2":
                     Console.WriteLine("Version 2.0.0 - Second release, not much.");
                     Console.WriteLine("There is 6 options: Nuke Server, Login to a bot, Send webhook message, Nuke Server (Better), and the Release Notes. The last is Exit, but that doesn't count.");
                     Console.WriteLine("This version can be downloaded at: https://github.com/Epicinver/CordTool/releases/download/v2.0.0/Cordtool.zip");
@@ -438,7 +458,7 @@ namespace CordTool
                     Console.ReadKey();
                     Console.Clear();
                     break;
-                case '3':
+                case "3":
                     Console.WriteLine("Version 3.0.0 - GUI version fully integrated.");
                     Console.WriteLine("A GUI version has been added, along with a few bug fixes!");
                     Console.WriteLine("The GUI was made in Windows Forms, with simple C#, and the Visual Studio Designer view.");
@@ -447,7 +467,7 @@ namespace CordTool
                     Console.ReadKey();
                     Console.Clear();
                     break;
-                case '4':
+                case "4":
                     Console.WriteLine("Version 4.0.0 - 4th release, bot client is functional.");
                     Console.WriteLine("The bot client is functional, but in development.");
                     Console.WriteLine("I had fun making this version!");
@@ -456,7 +476,7 @@ namespace CordTool
                     Console.ReadKey();
                     Console.Clear();
                     break;
-                case '5':
+                case "5":
                     Console.WriteLine("Version 5.0.0 - 5th release, bug fixes/updater.");
                     Console.WriteLine("This version has a few bug fixes, and i added a updater.");
                     Console.WriteLine("The updater will check for updates with GitHub's API, and make a batch file if it finds any newer versions.");
@@ -466,14 +486,14 @@ namespace CordTool
                     Console.ReadKey();
                     Console.Clear();
                     break;
-                case '6':
+                case "6":
                     Console.WriteLine("Version 6.0.0 - Bullshit");
                     Console.WriteLine("Actually nothing, i just wasted my time lol");
                     Console.WriteLine("Click any key to exit.");
                     Console.ReadKey();
                     Console.Clear();
                     break;
-                case '7':
+                case "7":
                     Console.WriteLine("Version 7.0.0 - 7th release, token grabber via oauth2 (only generates a link though!).");
                     Console.WriteLine("This version has a token grabber, which generates an oauth2 link for you to use.");
                     Console.WriteLine("Download: https://github.com/epicinver/cordtool/releases/v7.0.0/setup.exe");
@@ -481,7 +501,7 @@ namespace CordTool
                     Console.ReadKey();
                     Console.Clear();
                     break;
-                case '8':
+                case "8":
                     Console.WriteLine("Version 8.0.0 - I'm too lazy.");
                     Console.WriteLine("Why you care?");
                     Console.WriteLine("Bye bye!");
@@ -489,13 +509,15 @@ namespace CordTool
                     Console.ReadKey();
                     Console.Clear();
                     break;
-                case '9':
-                    Console.WriteLine("I'm insane");
+                case "9":
+                    Console.WriteLine("v9 - I'm insane");
                     Console.ReadKey();
                     Console.Clear();
                     break;
-                case '10':
-                    Console.WriteLine("Uh its in development (9.5 and 10 count as this)");
+                case "9.5":
+                    Console.WriteLine("Version 9.5.0 - Minor bug fixes");
+                    Console.WriteLine("Also added the auto update feature + an easter egg. Also fixed the nuke server better function.");
+                    Console.WriteLine("Version 10 soon!");
                     Console.ReadKey();
                     Console.Clear();
                     break;
@@ -507,13 +529,13 @@ namespace CordTool
             Console.Clear();
             Console.WriteLine("Checking for updates...");
 
-            const string VERSION_UPDATE_VAR = "8.0.0"; // current version
+            const string VERSION_UPDATE_VAR = "9.5.0"; // current version
             const string GITHUB_API = "https://api.github.com/repos/epicinver/cordtool/releases/latest";
 
             try
             {
                 var client = new System.Net.Http.HttpClient();
-                client.DefaultRequestHeaders.UserAgent.ParseAdd("CordToolUpdater/1.0");
+                client.DefaultRequestHeaders.UserAgent.ParseAdd("Cordtool/9.5");
 
                 string json = await client.GetStringAsync(GITHUB_API);
 
@@ -596,6 +618,45 @@ exit
             Console.ReadKey();
         }
 
+        static async Task<bool> CheckForUpdates()
+        {
+            Console.WriteLine("Checking for updates...");
+
+            const string VERSION_UPDATE_VAR = "9.5.0"; // current version
+            const string GITHUB_API = "https://api.github.com/repos/epicinver/cordtool/releases/latest";
+
+            try
+            {
+                using (var client = new System.Net.Http.HttpClient())
+                {
+                    client.DefaultRequestHeaders.UserAgent.ParseAdd("Cordtool/9.5");
+
+                    string json = await client.GetStringAsync(GITHUB_API);
+
+                    dynamic release = Newtonsoft.Json.JsonConvert.DeserializeObject(json);
+                    string latestTag = release.tag_name;
+
+                    Version latestVer, currentVer;
+                    if (Version.TryParse(latestTag.TrimStart('v'), out latestVer) &&
+                        Version.TryParse(VERSION_UPDATE_VAR.TrimStart('v'), out currentVer) &&
+                        latestVer > currentVer)
+                    {
+                        Console.WriteLine($"Update found: {latestTag}");
+                        return true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("You have the latest version.");
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Failed to check for updates: " + ex.Message);
+                return false;
+            }
+        }
 
         static void CordToolGUI()
     {

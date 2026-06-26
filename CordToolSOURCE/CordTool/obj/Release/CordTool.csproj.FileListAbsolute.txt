@@ -124,10 +124,10 @@ C:\Users\Arran\OneDrive\Documents\GitHub\CordTool\CordToolSOURCE\CordTool\bin\Re
 C:\Users\Arran\OneDrive\Documents\GitHub\CordTool\CordToolSOURCE\CordTool\bin\Release\System.Threading.Channels.xml
 C:\Users\Arran\OneDrive\Documents\GitHub\CordTool\CordToolSOURCE\CordTool\bin\Release\System.Threading.Tasks.Extensions.xml
 C:\Users\Arran\OneDrive\Documents\GitHub\CordTool\CordToolSOURCE\CordTool\obj\Release\CordTool.csproj.AssemblyReference.cache
-C:\Users\Arran\OneDrive\Documents\GitHub\CordTool\CordToolSOURCE\CordTool\obj\Release\CordTool.exe.config
 C:\Users\Arran\OneDrive\Documents\GitHub\CordTool\CordToolSOURCE\CordTool\obj\Release\CordTool.Form1.resources
 C:\Users\Arran\OneDrive\Documents\GitHub\CordTool\CordToolSOURCE\CordTool\obj\Release\CordTool.csproj.GenerateResource.cache
 C:\Users\Arran\OneDrive\Documents\GitHub\CordTool\CordToolSOURCE\CordTool\obj\Release\CordTool.csproj.CoreCompileInputs.cache
 C:\Users\Arran\OneDrive\Documents\GitHub\CordTool\CordToolSOURCE\CordTool\obj\Release\CordTool.csproj.Up2Date
 C:\Users\Arran\OneDrive\Documents\GitHub\CordTool\CordToolSOURCE\CordTool\obj\Release\CordTool.exe
 C:\Users\Arran\OneDrive\Documents\GitHub\CordTool\CordToolSOURCE\CordTool\obj\Release\CordTool.pdb
+C:\Users\Arran\OneDrive\Documents\GitHub\CordTool\CordToolSOURCE\CordTool\obj\Release\CordTool.exe.config

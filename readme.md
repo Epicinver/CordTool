@@ -8,7 +8,7 @@ AND its open source AND not obfuscated! you can take a peek at everything if you
 <br>
 and more!
 
-# Download Cordtool Now
+# Download Cordtool Now (Current Version 9.5.0)
 
 https://github.com/Epicinver/Cordtool/releases is the only legit place to download cordtool.
 <br>

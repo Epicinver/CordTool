@@ -1,17 +1,40 @@
-v9.5 soon...
--
-# Cordtool :D
+# cordtool
+the BEST multitool for skids who dont want to get ratted.
+made in c# this will be the best tool you have ever used.
 
-Why did i make this
++ its open source AND not obfuscated! you can take a peek at everything if you want to be 100% sure you wont get ratted.
 
-Join the [discord now](https://discord.gg/NVzgUdYfYd)
+and more!
 
+# Download Cordtool Now
 
+https://github.com/Epicinver/Cordtool/releases is the only legit place to download cordtool.
 
+anywhere else is probably a rat
 
+## Cordtools history
 
-## Stuff i want to add to v9.x/v10.
+This project started out back in around september of 2025 when I was getting into C#. Now i focus more on Python and JavaScript.
+
+But recently (June 2026) I decided to continue development of Cordtool.
+
+## Stuff i want to add
 
 NON-ADMIN RAIDER (via slash commands)
 NON-ADMIN RAIDER (via tokens)
 OAUTH2 LOGGER
+THEMES
+BETTER GUI
+AUTO UPDATE AT STARTUP
+
+
+# KNOWN BUGS
+These are *known bugs*. If your issue is listed here, do not make an issue about it.
+Instead, wait for an update that fixes it.
+------
+V9 server nuker is broken
+
+
+# More in the official Discord server!
+[Join our Discord](https://discord.gg/6hUKZxFsq)
+
